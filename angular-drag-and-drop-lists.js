@@ -186,6 +186,7 @@ angular.module('dndLists', [])
    * - dnd-disable-if       Optional boolean expresssion. When it evaluates to true, no dropping
    *                        into the list is possible. Note that this also disables rearranging
    *                        items inside the list.
+   * - dnd-placeholder-tpl  Custom template for a placeholder. Must use the dndPlaceholder CSS class
    * - dnd-horizontal-list  Optional boolean expresssion. When it evaluates to true, the positioning
    *                        algorithm will use the left and right halfs of the list items instead of
    *                        the upper and lower halfs.
@@ -410,7 +411,9 @@ angular.module('dndLists', [])
             placeholder = child;
           }
         });
-        return placeholder || angular.element("<li class='dndPlaceholder'></li>");
+        return placeholder ||
+               angular.element(attr.dndPlaceholderTpl) ||
+               angular.element("<li class='dndPlaceholder'></li>");
       }
 
       /**
